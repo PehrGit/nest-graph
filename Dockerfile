@@ -23,8 +23,9 @@ RUN dpkg -i /tmp/opentsdb-2.3.0_all.deb && rm /tmp/opentsdb-2.3.0_all.deb
 ADD opentsdb.sh /opt/
 
 # Install Grafana
-ADD  https://grafanarel.s3.amazonaws.com/builds/grafana_4.0.2-1481203731_amd64.deb /tmp/
-RUN dpkg -i /tmp/grafana_4.0.2-1481203731_amd64.deb && rm /tmp/grafana_4.0.2-1481203731_amd64.deb
+ADD https://dl.grafana.com/oss/release/grafana_5.4.2_amd64.deb /tmp/
+RUN apt-get install -y adduser libfontconfig
+RUN dpkg -i /tmp/grafana_5.4.2_amd64.deb && rm /tmp/grafana_5.4.2_amd64.deb
 ADD grafana.sh /opt/
 ADD dashboards /opt/dashboards
 

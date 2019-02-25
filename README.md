@@ -64,6 +64,8 @@ docker run -d -p 4242:4242 -p 3000:3000 --restart unless-stopped peterot/nest-gr
 ```
 The previous command will return the container id as a long string. Copy this for use in the next step.
 
+Note: All the data recorded from the thermostats will be stored in the docker container by default. However, you can map the data volume to a location external to docker so it can easily be persited between upgrades to the docker container. First you will need to configure docker to have access to the specific path then you can add the following to the above command `-v /Users/test/Temp/data:/data` where `/Users/test/Temp` is the location the data will be written to.
+
 ## Configure Credentials
 
 It is necessary to execute a small python script on the docker container to setup the Nest API credentials. The stript will ask for the id and secret obtained when the developer account was set up. It will then output a URL which you must visit to inform Nest that you are happy to allow the metrics collector the specified access. Once accepted it will give you a pin which must be provided to the config script.
