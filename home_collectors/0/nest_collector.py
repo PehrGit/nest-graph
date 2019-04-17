@@ -41,7 +41,7 @@ def collect_all_devices(napi):
         printmetric("num_thermostats", ts, structure.num_thermostats, tags)
 
         for device in structure.thermostats:
-            tags = {"structure":structure.name, "device":device.name}
+            tags = {"structure":structure.name, "device":device.name.replace('(', '').replace(')', '')}
             metric_prefix = "thermostat."
             printmetric(metric_prefix + "temperature", ts, device.temperature, tags)
             printmetric(metric_prefix + "humidity", ts, device.humidity, tags)
@@ -63,7 +63,7 @@ def collect_all_devices(napi):
             printmetric(metric_prefix + "hvac_state", ts, hvac_state_val, tags)
 
         for device in structure.smoke_co_alarms:
-            tags = {"structure":structure.name, "device":device.name}
+            tags = {"structure":structure.name, "device":device.name.replace('(', '').replace(')', '')}
             metric_prefix = "smoke_co_alarm."
 
             status_map = {
